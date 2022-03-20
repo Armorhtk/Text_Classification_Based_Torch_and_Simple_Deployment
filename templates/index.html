@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Home</title>
+  <!-- Meta tags -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="keywords" content=""
+	 />
+  <script>
+	 addEventListener("load", function () { setTimeout(hideURLbar, 0); }, false); function hideURLbar() { window.scrollTo(0, 1); }
+  </script>
+  <!-- Meta tags -->
+  <!--stylesheets-->
+  <link href="css/style.css" rel='stylesheet' type='text/css' media="all">
+  <!--//style sheet end here-->
+  <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+</head>
+<body>
+  <div class="mid-class">
+	 <div class="art-right-w3ls">
+		 <div  style="width:100%;text-align:center">
+		<h2>Input Data</h2>
+		<form name="inpu_name" action="{{url_for('predict')}}" method="post">
+		   <div class="main">
+			  <div class="form-left-to-w3l">
+				 <input type="text" name="sentence1" placeholder="请输入预测句子1" required="">
+			  </div>
+			  <div class="form-left-to-w3l ">
+				 <input type="text" name="sentence2" placeholder="请输入预测句子2(可选)" required="">
+				 <div class="clear"></div>
+			  </div>
+		   </div>
+		   <div class="clear"></div>
+		   <div class="btnn">
+			  <button type="submit">预测</button>
+		   </div>
+		</form>
+		 </div></br></br>
+		  <div id="predict"><h1>
+			     {% if isHead == False %}
+				  <div>输入句子1:  {{sent1}}</div>
+				  <div>输入句子2:  {{sent2}}</div>
+				  <div>预测结果:  {{result}}</div>
+				  {% for key,value in response.items() %}
+					<div>{{key}}: {{value}}</div>
+				  {% endfor %}
+				{% else %}
+					<div>预测结果: 未输入数据</div>
+				{% endif %}
+			  </h1>
+		  </div>
+	 </div>
+
+  </div>
+  <footer class="bottem-wthree-footer">
+	 <p>Copyright &copy; 2021.Company name All rights reserved.</p>
+  </footer>
+</body>
+</html>

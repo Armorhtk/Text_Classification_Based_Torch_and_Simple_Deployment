@@ -1,0 +1,2 @@
+acc,precision,recall,f1,task_dataset,model_name,embedding_type,w2v_name,Seed,Batch_size,Max_lenth,lr
+0.90274,0.80903,0.74485,0.77131,TongHuaShun,Capsule,w2v,50000-word2vec.txt,1234,128,300,0.0005
