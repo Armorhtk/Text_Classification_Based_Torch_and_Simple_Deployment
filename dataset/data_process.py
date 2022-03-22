@@ -1,5 +1,6 @@
 import os
 import pandas as pd
+import json
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 
@@ -20,5 +21,20 @@ def TongHuaShun_task():
     print(train.label.value_counts())
     print(test.label.value_counts())
 
+def TNEWS_task(file_name,save_name):
+    curr_path = "./TNEWS"
+    label = pd.read_json(os.path.join(curr_path,"labels.json"),lines=True)
+    print(label["label_desc"].unique())
+    label_dict = {l: idx for idx, l in enumerate(label["label_desc"].unique())}
+    with open(os.path.join(curr_path,"label_dict.json"),"w",encoding="utf-8") as f:
+        json.dump(label_dict,f)
+    df = pd.read_json(os.path.join(curr_path,file_name),orient="values",lines=True)
+    df["label"] = [label_dict[i] for i in df["label_desc"]]
+    df = df[["sentence","label"]]
+    df.columns = ["text", "label"]
+    df.to_csv(os.path.join(curr_path,save_name),index=False)
+
+
 if __name__ == '__main__':
-    TongHuaShun_task()
+    TNEWS_task("train.json","train.csv")
+    TNEWS_task("dev.json", "dev.csv")
